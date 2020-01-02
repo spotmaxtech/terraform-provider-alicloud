@@ -422,6 +422,7 @@ func (s *CsService) GetPermanentToken(clusterId string) (string, error) {
 		createClusterTokenResponse, err := s.client.WithCsClient(func(csClient *cs.Client) (interface{}, error) {
 			clusterTokenReqeust := &cs.ClusterTokenReqeust{}
 			clusterTokenReqeust.IsPermanently = true
+			clusterTokenReqeust.Expired = 0
 			return csClient.CreateClusterToken(clusterId, clusterTokenReqeust)
 		})
 		if err != nil {
